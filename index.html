@@ -2062,7 +2062,17 @@ footer{
     }
   }
 
-  function fetchUnsplashPhoto(query){
+  // Unsplash İngilizce arama terimleri gerektiriyor;
+  // Türkçe mod anahtarlarımızı buradan eşliyoruz.
+  var UNSPLASH_QUERY_MAP = {
+    odakli: "focus minimal desk",
+    yaratici: "creative pastel aesthetic",
+    dinlenme: "calm nature peaceful",
+    motivasyon: "motivation sunrise mountain"
+  };
+
+  function fetchUnsplashPhoto(moodKey){
+    var query = UNSPLASH_QUERY_MAP[moodKey] || "aesthetic minimal";
     var url = "https://api.unsplash.com/photos/random" +
       "?query=" + encodeURIComponent(query) +
       "&orientation=landscape" +
